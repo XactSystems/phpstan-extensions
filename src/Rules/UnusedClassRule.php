@@ -12,6 +12,7 @@ use PHPStan\Rules\RuleErrorBuilder;
 use Xact\PHPStan\Collectors\ClassGroupUseCollector;
 use Xact\PHPStan\Collectors\ClassUseCollector;
 use Xact\PHPStan\Collectors\DeclareClassCollector;
+use Xact\PHPStan\Collectors\DeclareTraitCollector;
 use Xact\PHPStan\Exception\InvalidNodeTypeException;
 
 class UnusedClassRule implements Rule
@@ -35,6 +36,7 @@ class UnusedClassRule implements Rule
         }
 
         $classDeclarationData = $node->get(DeclareClassCollector::class);
+        $traitDeclarationData = $node->get(DeclareTraitCollector::class);
         $groupUses = $node->get(ClassGroupUseCollector::class);
         $normalUses = $node->get(ClassUseCollector::class);
 
@@ -63,6 +65,20 @@ class UnusedClassRule implements Rule
             foreach ($declarations as [$className, $line]) {
                 if (!array_key_exists($className, $usedClasses)) {
                     $errors[] = RuleErrorBuilder::message("Class {$className} is never used.")
+                        ->file($file)
+                        ->line($line)
+                        ->build();
+                }
+            }
+        }
+        foreach ($traitDeclarationData as $file => $declarations) {
+            /**
+             * @var string $className
+             * @var int $line
+             */
+            foreach ($declarations as [$className, $line]) {
+                if (!array_key_exists($className, $usedClasses)) {
+                    $errors[] = RuleErrorBuilder::message("Trait {$className} is never used.")
                         ->file($file)
                         ->line($line)
                         ->build();

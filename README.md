@@ -24,7 +24,17 @@ include:
 
 ## Rules
 ### UnusedClassRule
-This rule scans for class declarations and use statements. If a class is declared but not used within the scanned source files, an error is generated.
+This rule scans for class and trait declarations and use statements. If a class or trait is declared but not used within the scanned source files, an error is generated.
+
+### Disabling the rule
+You can disable scanning classes and traits as follows:
+```yaml
+# phpstan.neon
+parameters:
+    unused_classes:
+        classes: false
+        traits: false
+```
 
 #### Excluding files
 You can exclude directories and individual files from being scanned by this rule:
@@ -33,8 +43,7 @@ You can exclude directories and individual files from being scanned by this rule
 # phpstan.neon
 parameters:
     unused_classes:
-        - 'src/Entity'
-        - 'src/Controller'
-        - 'src/Repositories'
-        - 'src/MyUnusedClass.php'
+        excludePaths:
+            - 'src/Controller'
+            - 'src/MyUnusedClass.php'
 ```

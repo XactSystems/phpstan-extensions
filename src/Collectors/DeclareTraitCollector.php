@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Xact\PHPStan\Collectors;
 
 use PhpParser\Node;
-use PhpParser\Node\Stmt\Class_;
+use PhpParser\Node\Stmt\Trait_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Collectors\Collector;
 use PHPStan\File\FileHelper;
 use Xact\PHPStan\Configuration;
 use Xact\PHPStan\Exception\InvalidNodeTypeException;
 
-class DeclareClassCollector implements Collector
+class DeclareTraitCollector implements Collector
 {
     private Configuration $configuration;
     private FileHelper $fileHelper;
@@ -25,7 +25,7 @@ class DeclareClassCollector implements Collector
 
     public function getNodeType(): string
     {
-        return Class_::class;
+        return Trait_::class;
     }
 
     /**
@@ -34,8 +34,8 @@ class DeclareClassCollector implements Collector
     // phpcs:ignore SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
     public function processNode(Node $node, Scope $scope)
     {
-        if (!$node instanceof Class_) {
-            throw InvalidNodeTypeException::create($node, Class_::class);
+        if (!$node instanceof Trait_) {
+            throw InvalidNodeTypeException::create($node, Trait_::class);
         }
 
         if ($node->namespacedName === null) {
@@ -52,7 +52,7 @@ class DeclareClassCollector implements Collector
 
     private function isFileExcluded(Scope $scope): bool
     {
-        if ($this->configuration->isUnusedClassesEnabled() === false) {
+        if ($this->configuration->isUnusedTraitsEnabled() === false) {
             return true;
         }
 

@@ -19,16 +19,26 @@ final class Configuration
         $this->parameters = $parameters;
     }
 
+    public function isUnusedClassesEnabled(): bool
+    {
+        return (bool)($this->parameters['classes'] ?? true);
+    }
+
+    public function isUnusedTraitsEnabled(): bool
+    {
+        return (bool)($this->parameters['traits'] ?? true);
+    }
+
     /**
      * @return string[]
      */
-    public function getExcludedPaths(): array
+    public function getExcludePaths(): array
     {
         /** @var string[] */
-        $excludedPaths = $this->parameters['excludedPaths'] ?? $this->parameters['excludedPaths'];
+        $excludePaths = $this->parameters['excludePaths'] ?? $this->parameters['excludePaths'];
 
-        Assert::allFileExists($excludedPaths);
+        Assert::allFileExists($excludePaths);
 
-        return $excludedPaths;
+        return $excludePaths;
     }
 }

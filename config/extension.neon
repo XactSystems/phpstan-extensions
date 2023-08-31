@@ -1,12 +1,16 @@
 parametersSchema:
     unused_classes: structure([
-        excludedPaths: array()
+        classes: bool()
+        traits: bool()
+        excludePaths: array()
     ])
 
 # default parameters
 parameters:
     unused_classes:
-        excludedPaths: []
+        classes: true
+        traits: true
+        excludePaths: []
 
 services:
     -
@@ -25,6 +29,10 @@ services:
             - phpstan.collector
     -
         class: Xact\PHPStan\Collectors\DeclareClassCollector
+        tags:
+            - phpstan.collector
+    -
+        class: Xact\PHPStan\Collectors\DeclareTraitCollector
         tags:
             - phpstan.collector
 
