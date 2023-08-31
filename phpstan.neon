@@ -1,0 +1,16 @@
+parameters:
+    level: 9
+    treatPhpDocTypesAsCertain: false
+    checkGenericClassInNonGenericObjectType: false
+
+    bootstrapFiles:
+
+    paths:
+        - src
+        - tests
+
+    excludePaths:
+        analyseAndScan:
+            - tests/UnusedClass
+
+    ignoreErrors:

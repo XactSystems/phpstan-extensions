@@ -1,0 +1,6 @@
+{
+    "intelephense.environment.phpVersion": "8.2.5",
+    "terminal.integrated.env.linux": {
+        "PHP_VERSION": "82"
+    }
+}

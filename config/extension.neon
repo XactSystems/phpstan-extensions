@@ -1,0 +1,32 @@
+parametersSchema:
+    unused_classes: structure([
+        excludedPaths: array()
+    ])
+
+# default parameters
+parameters:
+    unused_classes:
+        excludedPaths: []
+
+services:
+    -
+        factory: Xact\PHPStan\Configuration
+        arguments:
+            - %unused_classes%
+
+    # collectors
+    -
+        class: Xact\PHPStan\Collectors\ClassUseCollector
+        tags:
+            - phpstan.collector
+    -
+        class: Xact\PHPStan\Collectors\ClassGroupUseCollector
+        tags:
+            - phpstan.collector
+    -
+        class: Xact\PHPStan\Collectors\DeclareClassCollector
+        tags:
+            - phpstan.collector
+
+rules:
+    - Xact\PHPStan\Rules\UnusedClassRule

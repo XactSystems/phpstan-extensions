@@ -1,0 +1,52 @@
+{
+    "name": "xactsystems/phpstan-extensions",
+    "description": "A collection of PHPStan extensions found useful in our projects.",
+    "type": "phpstan-extension",
+    "version": "1.0.0",
+    "keywords": [
+        "phpstan",
+        "static analysis"
+    ],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../phpstan-src"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "webmozart/assert": "^1.11"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6",
+        "xactsystems/phpstan-dev": "dev-master"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Xact\\PHPStan\\": "src/",
+            "Xact\\PHPStan\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+    },
+    "authors": [
+        {
+            "name": "Ian Foulds",
+            "email": "ianfoulds@x-act.co.uk"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "xactsystems/phpstan-dev": true
+        }
+    },
+    "extra": {
+        "phpstan": {
+            "includes": [
+                "config/extension.neon"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
