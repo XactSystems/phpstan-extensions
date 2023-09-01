@@ -34,3 +34,4 @@ services:
 
 rules:
     - Xact\PHPStan\Rules\UnusedClassRule
+    - Xact\PHPStan\Rules\UnusedTraitRule

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7cbc787da40958885e9a9b553b8dee3b",
+    "content-hash": "11ed456228ad8851226fe5939d14e601",
     "packages": [
         {
             "name": "webmozart/assert",
@@ -364,16 +364,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.11.x-dev",
+            "version": "1.10.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "7a55b7fe360e9383fec253fc230d9326b1a1ad6a"
+                "reference": "c47e47d3ab03137c0e121e77c4d2cb58672f6d44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/7a55b7fe360e9383fec253fc230d9326b1a1ad6a",
-                "reference": "7a55b7fe360e9383fec253fc230d9326b1a1ad6a",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/c47e47d3ab03137c0e121e77c4d2cb58672f6d44",
+                "reference": "c47e47d3ab03137c0e121e77c4d2cb58672f6d44",
                 "shasum": ""
             },
             "require": {
@@ -382,7 +382,6 @@
             "conflict": {
                 "phpstan/phpstan-shim": "*"
             },
-            "default-branch": true,
             "bin": [
                 "phpstan",
                 "phpstan.phar"
@@ -423,7 +422,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-08-31T08:17:02+00:00"
+            "time": "2023-08-24T21:54:50+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -1863,7 +1862,7 @@
         },
         {
             "name": "xactsystems/phpstan-dev",
-            "version": "dev-master",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/XactSystems/phpstan-dev.git",
@@ -1883,7 +1882,6 @@
             "require-dev": {
                 "composer/composer": "^2.5"
             },
-            "default-branch": true,
             "type": "composer-plugin",
             "extra": {
                 "class": "Xact\\PHPStan\\Dev\\Plugin"
@@ -1913,10 +1911,8 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
-    "stability-flags": {
-        "xactsystems/phpstan-dev": 20
-    },
+    "minimum-stability": "stable",
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
