@@ -34,6 +34,10 @@ class UnusedClassRule implements Rule
             throw InvalidNodeTypeException::create($node, CollectedDataNode::class);
         }
 
+        if ($node->isOnlyFilesAnalysis()) {
+            return [];
+        }
+
         $classDeclarationData = $node->get(DeclareClassCollector::class);
         $groupUses = $node->get(ClassGroupUseCollector::class);
         $normalUses = $node->get(ClassUseCollector::class);

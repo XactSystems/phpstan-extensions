@@ -33,6 +33,10 @@ class UnusedTraitRule implements Rule
             throw InvalidNodeTypeException::create($node, CollectedDataNode::class);
         }
 
+        if ($node->isOnlyFilesAnalysis()) {
+            return [];
+        }
+
         $traitDeclarationData = $node->get(TraitDeclarationCollector::class);
         $traitUses = $node->get(TraitUseCollector::class);
 
