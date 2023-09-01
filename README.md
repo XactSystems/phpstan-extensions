@@ -1,7 +1,8 @@
 # A collection of PHPStan extensions
 
 This repo contains some useful PHPStan extension for detecting errors in your code. The currently list of rules is:
-  - ==UnusedClassRule==
+## `UnusedClassRule`
+## `UnusedTraitRule`
 
 ## Install
 
@@ -23,17 +24,16 @@ include:
 ```
 
 ## Rules
-### UnusedClassRule
-This rule scans for class and trait declarations and use statements. If a class or trait is declared but not used within the scanned source files, an error is generated.
+### `UnusedClassRule`
+This rule scans for class declarations and use statements. If a class is declared but not used within the scanned source files, an error is generated.
 
 ### Disabling the rule
-You can disable scanning classes and traits as follows:
+You can disable scanning classes as follows:
 ```yaml
 # phpstan.neon
 parameters:
     unused_classes:
         classes: false
-        traits: false
 ```
 
 #### Excluding files
@@ -47,3 +47,18 @@ parameters:
             - 'src/Controller'
             - 'src/MyUnusedClass.php'
 ```
+
+### `UnusedTraitRule`
+This rule scans for trait declarations and use statements. If a trait is declared but not used within the scanned source files, an error is generated.
+
+### Disabling the rule
+You can disable scanning traits as follows:
+```yaml
+# phpstan.neon
+parameters:
+    unused_classes:
+        traits: false
+```
+
+#### Excluding files
+You can exclude directories and individual files from being scanned by this rule using the excludePaths parameter as shown above/

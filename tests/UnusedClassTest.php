@@ -14,7 +14,7 @@ use Xact\PHPStan\Rules\UnusedClassRule;
 /**
  * @extends RuleTestCase<\Xact\PHPStan\Rules\UnusedClassRule>
  */
-class UnusedClassRuleTest extends RuleTestCase
+class UnusedClassTest extends RuleTestCase
 {
     /**
      * @return string[]
@@ -34,7 +34,7 @@ class UnusedClassRuleTest extends RuleTestCase
         $this->analyse([__DIR__ . '/UnusedClass/ClassA.php', __DIR__ . '/UnusedClass/ClassB.php', __DIR__ . '/UnusedClass/ClassC.php'], [
             [
                 'Class Xact\PHPStan\Tests\UnusedClass\ClassA is never used.', // asserted error message
-                7, // asserted error line
+                9, // asserted error line
             ],
             [
                 'Class Xact\PHPStan\Tests\UnusedClass\ClassC is never used.', // asserted error message

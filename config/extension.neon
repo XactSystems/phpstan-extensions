@@ -31,10 +31,6 @@ services:
         class: Xact\PHPStan\Collectors\DeclareClassCollector
         tags:
             - phpstan.collector
-    -
-        class: Xact\PHPStan\Collectors\DeclareTraitCollector
-        tags:
-            - phpstan.collector
 
 rules:
     - Xact\PHPStan\Rules\UnusedClassRule

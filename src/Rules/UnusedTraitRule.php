@@ -9,12 +9,11 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Node\CollectedDataNode;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
-use Xact\PHPStan\Collectors\ClassGroupUseCollector;
-use Xact\PHPStan\Collectors\ClassUseCollector;
-use Xact\PHPStan\Collectors\DeclareClassCollector;
+use PHPStan\Rules\Traits\TraitDeclarationCollector;
+use PHPStan\Rules\Traits\TraitUseCollector;
 use Xact\PHPStan\Exception\InvalidNodeTypeException;
 
-class UnusedClassRule implements Rule
+class UnusedTraitRule implements Rule
 {
     /**
      * @inheritDoc
@@ -34,35 +33,27 @@ class UnusedClassRule implements Rule
             throw InvalidNodeTypeException::create($node, CollectedDataNode::class);
         }
 
-        $classDeclarationData = $node->get(DeclareClassCollector::class);
-        $groupUses = $node->get(ClassGroupUseCollector::class);
-        $normalUses = $node->get(ClassUseCollector::class);
+        $traitDeclarationData = $node->get(TraitDeclarationCollector::class);
+        $traitUses = $node->get(TraitUseCollector::class);
 
-        $usedClasses = [];
-        foreach ($groupUses as $fileUses) {
-            foreach ((array)$fileUses as $classUse) {
-                foreach ((array)$classUse as $class) {
-                    $usedClasses[$class] = $class;
-                }
-            }
-        }
-        foreach ($normalUses as $fileUses) {
-            foreach ((array)$fileUses as $classUse) {
-                foreach ((array)$classUse as $class) {
-                    $usedClasses[$class] = $class;
+        $usedTraits = [];
+        foreach ($traitUses as $fileUses) {
+            foreach ((array)$fileUses as $traitUse) {
+                foreach ((array)$traitUse as $trait) {
+                    $usedTraits[$trait] = $trait;
                 }
             }
         }
 
         $errors = [];
-        foreach ($classDeclarationData as $file => $declarations) {
+        foreach ($traitDeclarationData as $file => $declarations) {
             /**
              * @var string $className
              * @var int $line
              */
             foreach ($declarations as [$className, $line]) {
-                if (!array_key_exists($className, $usedClasses)) {
-                    $errors[] = RuleErrorBuilder::message("Class {$className} is never used.")
+                if (!array_key_exists($className, $usedTraits)) {
+                    $errors[] = RuleErrorBuilder::message("Trait {$className} is never used.")
                         ->file($file)
                         ->line($line)
                         ->build();
