@@ -24,6 +24,7 @@ include:
 ```
 
 ## Rules
+---
 ### `UnusedClassRule`
 This rule scans for class declarations and use statements. If a class is declared but not used within the scanned source files, an error is generated.
 
@@ -48,6 +49,32 @@ parameters:
             - 'src/MyUnusedClass.php'
 ```
 
+### Excluding Services
+By default, some known service and framework classes are excluded. There are a number of base classes from Symfony, Doctrine and PHPUnit that checked and, if matched, the class being analysed is ignored.
+
+To disable this, set the *excludeFrameworks* property to false:
+```yaml
+# phpstan.neon
+parameters:
+    unused_classes:
+        excludeFrameworks: false
+```
+
+This list will change as new frameworks and classes are added. Please look at the source code in src/Frameworks for a list of base classes that are excluded.
+
+If you want add a custom list of base classes to ignore, use the *baseClassExcludes* property:
+```yaml
+# phpstan.neon
+parameters:
+    unused_classes:
+        baseClassExcludes:
+            - 'App\Service\MyAbstractService'
+            - 'App\DI\MyDIClass'
+```
+
+Entries in *baseClassExcludes* are excluded regardless of the *excludeFrameworks* property value.
+
+---
 ### `UnusedTraitRule`
 This rule scans for trait declarations and use statements. If a trait is declared but not used within the scanned source files, an error is generated.
 
@@ -61,4 +88,4 @@ parameters:
 ```
 
 #### Excluding files
-You can exclude directories and individual files from being scanned by this rule using the excludePaths parameter as shown above/
+You can exclude directories and individual files from being scanned by this rule using the excludePaths parameter as shown above.

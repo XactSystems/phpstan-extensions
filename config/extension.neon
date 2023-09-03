@@ -3,6 +3,8 @@ parametersSchema:
         classes: bool()
         traits: bool()
         excludePaths: array()
+        excludeFrameworks: bool()
+        baseClassExcludes: array()
     ])
 
 # default parameters
@@ -11,6 +13,8 @@ parameters:
         classes: true
         traits: true
         excludePaths: []
+        excludeFrameworks: true
+        baseClassExcludes: []
 
 services:
     -
@@ -29,6 +33,14 @@ services:
             - phpstan.collector
     -
         class: Xact\PHPStan\Collectors\DeclareClassCollector
+        tags:
+            - phpstan.collector
+    -
+        class: Xact\PHPStan\Collectors\DeclareTraitCollector
+        tags:
+            - phpstan.collector
+    -
+        class: Xact\PHPStan\Collectors\TraitUseCollector
         tags:
             - phpstan.collector
 

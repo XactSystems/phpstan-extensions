@@ -9,8 +9,8 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Node\CollectedDataNode;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
-use PHPStan\Rules\Traits\TraitDeclarationCollector;
-use PHPStan\Rules\Traits\TraitUseCollector;
+use Xact\PHPStan\Collectors\DeclareTraitCollector;
+use Xact\PHPStan\Collectors\TraitUseCollector;
 use Xact\PHPStan\Exception\InvalidNodeTypeException;
 
 class UnusedTraitRule implements Rule
@@ -37,7 +37,7 @@ class UnusedTraitRule implements Rule
             return [];
         }
 
-        $traitDeclarationData = $node->get(TraitDeclarationCollector::class);
+        $traitDeclarationData = $node->get(DeclareTraitCollector::class);
         $traitUses = $node->get(TraitUseCollector::class);
 
         $usedTraits = [];

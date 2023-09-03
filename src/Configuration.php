@@ -41,4 +41,22 @@ final class Configuration
 
         return $excludePaths;
     }
+
+    public function isExcludeFrameworks(): bool
+    {
+        return (bool)($this->parameters['excludeFrameworks'] ?? true);
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getBaseClassExcludes(): array
+    {
+        /** @var string[] */
+        $frameworkClasses = $this->parameters['baseClassExcludes'] ?? $this->parameters['baseClassExcludes'];
+
+        Assert::isArray($frameworkClasses);
+
+        return $frameworkClasses;
+    }
 }

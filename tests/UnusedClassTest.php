@@ -31,16 +31,19 @@ class UnusedClassTest extends RuleTestCase
         // first argument: path to the example file that contains some errors that should be reported by UnusedClassRule
         // second argument: an array of expected errors,
         // each error consists of the asserted error message, and the asserted error file line
-        $this->analyse([__DIR__ . '/UnusedClass/ClassA.php', __DIR__ . '/UnusedClass/ClassB.php', __DIR__ . '/UnusedClass/ClassC.php'], [
+        $this->analyse(
+            [__DIR__ . '/UnusedClass/ClassA.php', __DIR__ . '/UnusedClass/ClassB.php', __DIR__ . '/UnusedClass/ClassC.php'],
             [
-                'Class Xact\PHPStan\Tests\UnusedClass\ClassA is never used.', // asserted error message
-                9, // asserted error line
-            ],
-            [
-                'Class Xact\PHPStan\Tests\UnusedClass\ClassC is never used.', // asserted error message
-                9, // asserted error line
-            ],
-        ]);
+                [
+                    'Class Xact\PHPStan\Tests\UnusedClass\ClassA is never used.', // asserted error message
+                    9, // asserted error line
+                ],
+                [
+                    'Class Xact\PHPStan\Tests\UnusedClass\ClassC is never used.', // asserted error message
+                    9, // asserted error line
+                ],
+            ]
+        );
 
         // the test fails, if the expected error does not occur,
         // or if there are other errors reported beside the expected one
@@ -49,7 +52,7 @@ class UnusedClassTest extends RuleTestCase
     protected function getRule(): Rule
     {
         // getRule() method needs to return an instance of the tested rule
-        return new UnusedClassRule();
+        return self::getContainer()->getByType(UnusedClassRule::class);
     }
 
     /**
