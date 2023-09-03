@@ -2,7 +2,6 @@
     "name": "xactsystems/phpstan-extensions",
     "description": "A collection of PHPStan extensions found useful in our projects.",
     "type": "phpstan-extension",
-    "version": "1.0.0",
     "keywords": [
         "phpstan",
         "static analysis"
